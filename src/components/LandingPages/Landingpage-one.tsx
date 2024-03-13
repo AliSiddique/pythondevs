@@ -9,6 +9,7 @@ import Pricing from '../Pricing';
 import FAQ from '../FAQ';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/AuthOptions';
+import FeaturedJobs from '../FeaturedJobs';
 
 type Props = {};
 
@@ -18,6 +19,7 @@ export default async function LandingpageOne({}: Props) {
     <div>
       <Navbar session={session} />
       <Hero />
+      <FeaturedJobs />
       <Stats />
       <Features />
       <Testimonials />
