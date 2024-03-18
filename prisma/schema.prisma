@@ -6,8 +6,8 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider = "cockroachdb"
+  url      = "postgresql://alisiddique:TUYjSRFE8Qc3CIOIIl8NBA@python-devs-5420.6zw.aws-eu-west-1.cockroachlabs.cloud:26257/defaultdb?sslmode=verify-full"
 }
 
 model Account {
@@ -16,12 +16,12 @@ model Account {
   type              String
   provider          String
   providerAccountId String
-  refresh_token     String? @db.Text
-  access_token      String? @db.Text
+  refresh_token     String?
+  access_token      String? 
   expires_at        Int?
   token_type        String?
   scope             String?
-  id_token          String? @db.Text
+  id_token          String? 
   session_state     String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -57,4 +57,21 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model JobPost {
+  id         String   @id @default(cuid())
+  title      String
+  email      String
+  description String
+  department String
+  type      String
+  salary    Int
+  location  String
+  company_name String
+  company_logo String
+  company_website String
+  company_description String
+  linkedin_in String
+  featured  Boolean 
 }

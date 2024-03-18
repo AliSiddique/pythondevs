@@ -1,39 +1,18 @@
 import React from 'react'
 import JobEntries from './JobEntries'
+import { db } from '../../prisma/client'
 
 type Props = {}
 
-let allPosts = [
-    {
-        slug: "frontend-developer",
-        data: {
-        type: "Full-time",
-        salary: "£60,000",
-        location: "London, UK",
-        company: "Vercel",
-        position: "Frontend Developer",
-        companyLogo: {
-            url: "https://hirewise.lexingtonthemes.com/logos/spotify.svg"
-        }
-        }
-    },
-    {
-        slug: "backend-developer",
-        data: {
-        type: "Full-time",
-        salary: "£60,000",
-        location: "London, UK",
-        company: "Vercel",
-        position: "Backend Developer",
-        companyLogo: {
-            url: "https://hirewise.lexingtonthemes.com/logos/github.svg"
-        }
-        }
-    },
 
-]
 
-export default function FeaturedJobs({}: Props) {
+    const getJobPost = async () => {
+      const jobPost = await db.jobPost.findMany()
+      return jobPost
+  }
+  
+export default async function FeaturedJobs({}: Props) {
+  const jobs = await getJobPost()
   return (
     <div>
 
@@ -52,17 +31,17 @@ export default function FeaturedJobs({}: Props) {
     </div>
     <ul className="divide-y divide-slate-100">
       {
-        allPosts
+        jobs
           .slice(0,2)
-          .map((post) => (
+          .map((job) => (
             <JobEntries
-              url={"/openjobs/" + post.slug}
-              type={post.data.type}
-              salary={post.data.salary}
-              location={post.data.location}
-              company={post.data.company}
-              position={post.data.position}
-              companyLogo={post.data.companyLogo.url}
+              url={"/openjobs/" + job.title}
+              type={job.type}
+              salary={job.salary as any}
+              location={job.location}
+              company={job.company_name}
+              position={job.title}
+              companyLogo={"https://hirewise.lexingtonthemes.com/logos/behance.svg"}
             />
           ))
       }
