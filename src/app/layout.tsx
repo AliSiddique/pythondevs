@@ -6,6 +6,8 @@ import Script from 'next/script';
 import { config } from '../../config';
 import { Toaster } from 'sonner';
 import SessionProviderContext from '@/components/SessionProvider';
+import Navbar from '@/components/Constants/Navbar';
+import Footer from '@/components/Constants/Footer';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -50,7 +52,9 @@ export default function RootLayout({
       <body className={inter.className}>
         <Toaster position='top-right' />
         <SessionProviderContext session={session}>
+          <Navbar session={session} />
           {children}
+          <Footer />
         </SessionProviderContext>
       </body>
     </html>

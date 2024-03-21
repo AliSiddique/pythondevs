@@ -1,12 +1,12 @@
-import { Skeleton } from '@/components/ui/skeleton'
-import React from 'react'
+import { Skeleton } from '@/components/ui/skeleton';
+import React from 'react';
 
-type Props = {}
+type Props = {};
 
 export default function loading({}: Props) {
   return (
     <div>
-        <Skeleton className='mb-4'  />
+      <Skeleton className='mb-4' />
     </div>
-  )
+  );
 }

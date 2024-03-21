@@ -123,13 +123,13 @@ let pricingTiers: PricingTiers[] = [
 
 export default function Pricing({ session }: Props) {
   const [isLoading, setIsLoading] = React.useState(false);
-  async function handleSubmit(event: FormEvent, name:string,priceId: string) {
+  async function handleSubmit(event: FormEvent, name: string, priceId: string) {
     event.preventDefault();
     setIsLoading(true);
     try {
       const res = await fetch('/api/checkout', {
         method: 'POST',
-        body: JSON.stringify({ name,priceId }),
+        body: JSON.stringify({ name, priceId }),
         headers: {
           'Content-Type': 'application/json',
         },
@@ -176,7 +176,7 @@ export default function Pricing({ session }: Props) {
                 {session ? (
                   <button
                     className='mt-4 block rounded border border-indigo-600 bg-indigo-600 px-12 py-3 text-center text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500 sm:mt-6'
-                    onClick={(e) => handleSubmit(e,tier.name, tier.priceId)}
+                    onClick={(e) => handleSubmit(e, tier.name, tier.priceId)}
                   >
                     {isLoading ? (
                       <Icons.spinner className='h-6 w-5 animate-spin' />

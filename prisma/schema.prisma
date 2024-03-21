@@ -74,4 +74,5 @@ model JobPost {
   company_description String
   linkedin_in String
   featured  Boolean 
+  slug      String  @unique 
 }

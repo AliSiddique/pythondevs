@@ -14,7 +14,7 @@ export async function POST(req: Request) {
     }
     const body = await req.json();
 
-    const { name,priceId } = body;
+    const { name, priceId } = body;
 
     const params: Stripe.Checkout.SessionCreateParams = {
       payment_method_types: ['card', 'paypal'],
