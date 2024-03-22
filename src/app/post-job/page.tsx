@@ -28,7 +28,7 @@ async function page({}: Props) {
           company_logo: formData.get('companyLogo') as string,
           linkedin_in: formData.get('linkedin') as string,
           company_description: formData.get('companyDescription') as string,
-          email: 'alisiddique10@hotmail.com',
+          email: formData.get('email') as string,
           featured: false, // Add the missing 'featured' property
           slug:formData.get('title') as string +  nanoid(5),
         },
@@ -112,12 +112,12 @@ async function page({}: Props) {
                 <div>
                   <div className='grid max-w-2xl grid-cols-1 divide-y sm:grid-cols-6'>
                     <div className='col-span-full grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 p-8 sm:grid-cols-6'>
-                      <div className='sm:col-span-3'>
+                      {/* <div className='sm:col-span-3'>
                         <label
                           htmlFor='email'
                           className='block text-sm font-medium leading-6 text-slate-900'
                         >
-                          First name
+                          Job title
                         </label>
                         <div className='mt-2'>
                           <input
@@ -127,19 +127,19 @@ async function page({}: Props) {
                             className='block w-full rounded-lg border-0 bg-white py-2.5 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-200 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-purple-600 sm:text-sm sm:leading-6'
                           />
                         </div>
-                      </div>
+                      </div> */}
 
                       <div className='sm:col-span-3'>
                         <label
-                          htmlFor='title'
+                          htmlFor='email'
                           className='block text-sm font-medium leading-6 text-slate-900'
                         >
-                          Last name
+                         Email
                         </label>
                         <div className='mt-2'>
                           <input
-                            type='text'
-                            name='title'
+                            type='email'
+                            name='email'
                             id='last-name'
                             className='block w-full rounded-lg border-0 bg-white py-2.5 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-200 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-purple-600 sm:text-sm sm:leading-6'
                           />
