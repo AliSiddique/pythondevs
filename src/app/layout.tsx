@@ -54,7 +54,7 @@ export default function RootLayout({
         <SessionProviderContext session={session}>
           <Navbar session={session} />
           {children}
-          <Footer />
+          {/* <Footer /> */}
         </SessionProviderContext>
       </body>
     </html>
