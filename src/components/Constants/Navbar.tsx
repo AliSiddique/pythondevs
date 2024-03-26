@@ -28,7 +28,9 @@ export default function Navbar({ session }: Props) {
                 href='/'
                 className='flex shrink-0 items-center space-x-2 py-4 font-semibold text-slate-900 lg:py-0'
               >
-                <svg
+                                  <img src="/logo.png" alt="ff" className='h-6 w-6 rounded-full' />
+
+                {/* <svg
                   className='h-6 w-6'
                   viewBox='0 0 42 38'
                   fill='none'
@@ -79,7 +81,7 @@ export default function Navbar({ session }: Props) {
                     className='ccustom'
                     fill='#3A04DC'
                   ></path>
-                </svg>
+                </svg> */}
                 <span>Hire Wise</span>
               </a>
             </div>
@@ -142,7 +144,7 @@ export default function Navbar({ session }: Props) {
                       fill='#3A04DC'
                     ></path>
                   </svg> */}
-                  <span>Hire Wise</span>
+                  {/* <span>Hire Wise</span> */}
                 </a>
                 <div className='flex w-full flex-col items-start justify-center text-center lg:mt-0 lg:w-2/3 lg:flex-row lg:items-center lg:space-x-8'>
                   <a
