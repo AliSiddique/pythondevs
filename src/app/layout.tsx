@@ -51,11 +51,9 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <Toaster position='top-right' />
-        <SessionProviderContext session={session}>
           <Navbar session={session} />
           {children}
           {/* <Footer /> */}
-        </SessionProviderContext>
       </body>
     </html>
   );
