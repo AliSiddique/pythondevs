@@ -89,7 +89,8 @@ export default function Navbar({ session }: Props) {
                   href='/'
                   className='inline-flex h-16 w-auto items-center space-x-2 px-6 font-semibold leading-none text-slate-900 lg:hidden'
                 >
-                  <svg
+                  <img src="/logo.png" alt="ff" className='h-6 w-6 rounded-full' />
+                  {/* <svg
                     className='h-6 w-6'
                     viewBox='0 0 42 38'
                     fill='none'
@@ -140,7 +141,7 @@ export default function Navbar({ session }: Props) {
                       className='ccustom'
                       fill='#3A04DC'
                     ></path>
-                  </svg>
+                  </svg> */}
                   <span>Hire Wise</span>
                 </a>
                 <div className='flex w-full flex-col items-start justify-center text-center lg:mt-0 lg:w-2/3 lg:flex-row lg:items-center lg:space-x-8'>
@@ -159,7 +160,7 @@ export default function Navbar({ session }: Props) {
                 </div>
                 <div className='ml-auto flex w-full flex-col items-start justify-end pt-4 lg:w-1/3 lg:flex-row lg:items-center lg:py-0'>
                   <a
-                    href='https://lexingtonthemes.lemonsqueezy.com/checkout/buy/9ae54a77-d4ab-456e-8dfd-0f6f69db73ff'
+                    href='/'
                     className='inline-flex w-full items-center bg-purple-500 px-5 py-3 text-sm leading-4 text-white duration-200 hover:bg-purple-50 hover:text-purple-500 focus:outline-none focus:ring-0 focus:ring-purple-500 focus:ring-offset-2 lg:w-auto lg:rounded-full lg:focus:ring-2'
                   >
                     Buy HireWise

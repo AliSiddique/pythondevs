@@ -56,7 +56,7 @@ export default function JobEntries({
               <div className='col-span-2 col-start-1 w-full flex-none'>
                 <dt className='sr-only'>Title</dt>
                 <dd className='text-base font-semibold leading-6 text-slate-900'>
-                  <a href={url}>
+                  <a href={"/jobs/2"}>
                     <span className='absolute -inset-x-4 inset-y-[calc(-1*(theme(spacing.6)+1px))] sm:-inset-x-6 sm:rounded-2xl lg:-inset-x-8'></span>
                     {position}
                   </a>
