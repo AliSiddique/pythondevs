@@ -82,7 +82,7 @@ export default function Navbar({ session }: Props) {
                     fill='#3A04DC'
                   ></path>
                 </svg> */}
-                <span>Hire Wise</span>
+                <span>Pythondevs</span>
               </a>
             </div>
             <div className='left-0 top-0 flex hidden h-full w-full items-start bg-slate-900 bg-opacity-50 p-4 text-sm md:absolute md:bg-transparent lg:relative lg:flex lg:w-3/4 lg:items-center lg:p-0 lg:text-base'>
@@ -173,7 +173,6 @@ export default function Navbar({ session }: Props) {
             <div className='absolute right-0 flex h-10 w-10 cursor-pointer flex-col items-center justify-center rounded-full bg-white hover:bg-slate-100 lg:hidden lg:items-end'>
               <svg
                 className='h-6 w-6 text-slate-700'
-                x-show='!showMenu'
                 fill='none'
                 stroke-linecap='round'
                 stroke-linejoin='round'
