@@ -17,8 +17,7 @@ export async function POST(req: Request) {
     event = stripe.webhooks.constructEvent(
       body,
       signature,
-      'whsec_44422d46ff5a33997a7344fb4029f2e2b2a73ba2d3ba3f892eb02ac90b39e5d2'
-      // process.env.STRIPE_WEBHOOK_SECRET as string
+      process.env.STRIPE_WEBHOOK_SECRET as string
     );
   } catch (error: any) {
     return new Response(`Webhook Error: ${error.message}`, { status: 400 });
