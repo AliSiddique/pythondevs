@@ -1,11 +1,8 @@
-import { Session } from 'next-auth';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
-type Props = {
-  session: Session | null;
-};
+
 
 interface NavbarLinks {
   title: string;
@@ -17,7 +14,7 @@ const links: NavbarLinks[] = [
   { title: 'Blog', href: '/blog' },
 ];
 
-export default function Navbar({ session }: Props) {
+export default function Navbar() {
   return (
     <section className='w-full bg-white antialiased'>
       <div className='mx-auto max-w-7xl px-8 lg:px-32'>

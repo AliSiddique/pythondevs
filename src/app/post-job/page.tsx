@@ -17,24 +17,25 @@ async function page({}: Props) {
     try {
       await db.jobPost.create({
         data: {
-          title: formData.get('title') as string,
+          title:"title",
           department: formData.get('department') as string,
-          type: formData.get('type') as string,
-          location: formData.get('location') as string,
+          type: "type",
+          location: "location",
           salary: 130,
-          description: formData.get('description') as string,
-          company_name: formData.get('companyName') as string,
-          company_website: formData.get('companyWebsite') as string,
-          company_logo: formData.get('companyLogo') as string,
-          linkedin_in: formData.get('linkedin') as string,
-          company_description: formData.get('companyDescription') as string,
-          email: formData.get('email') as string,
+          description: "formData.get('description') as string,",
+          company_name: "formData.get('companyName') as string",
+          company_website: "formData.get('companyWebsite') as string",
+          company_logo: "formData.get('companyLogo') as string",
+          linkedin_in: "formData.get('linkedin') as string",
+          company_description: "formData.get('companyDescription') as string",
+          email: "formData.get('email') as string",
           featured: false, // Add the missing 'featured' property
-          slug:formData.get('title') as string +  nanoid(5),
         },
       });
       console.log('Job posted successfully');
-    } catch (error) {}
+    } catch (error) {
+      console.error('Failed to post job', error);
+    }
   }
 
   return (

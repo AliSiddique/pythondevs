@@ -8,6 +8,7 @@ import { Toaster } from 'sonner';
 import SessionProviderContext from '@/components/SessionProvider';
 import Navbar from '@/components/Constants/Navbar';
 import Footer from '@/components/Constants/Footer';
+import QueryWrapper from '@/components/QueryLayout';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -33,10 +34,8 @@ export const metadata = {
 };
 
 export default function RootLayout({
-  session,
   children,
 }: Readonly<{
-  session: any;
   children: React.ReactNode;
 }>) {
   return (
@@ -50,10 +49,12 @@ export default function RootLayout({
         {/* <Script src="/chatbot/crisp.js" /> */}
       </head>
       <body className={inter.className}>
+        <QueryWrapper>
         <Toaster position='top-right' />
-          <Navbar session={session} />
+          <Navbar  />
           {children}
-          {/* <Footer /> */}
+          <Footer />
+        </QueryWrapper>
       </body>
     </html>
   );

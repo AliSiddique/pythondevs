@@ -1,5 +1,10 @@
+"use client"
 import React from 'react';
 import JobEntries from './JobEntries';
+import { useEffect } from 'react';
+import { useInfiniteQuery } from '@tanstack/react-query'
+import axios from 'axios'
+import { useInView } from 'react-intersection-observer'
 
 type Props = {};
 
@@ -85,9 +90,36 @@ let allPosts = [
 ];
 
 export default function LatestJobs({}: Props) {
+
+  const { ref, inView } = useInView()
+
+  const { isLoading, isError, data, error, isFetchingNextPage, fetchNextPage, hasNextPage } =
+    useInfiniteQuery({
+      queryKey: ['posts'],
+      queryFn: async ({ pageParam = '' }) => {
+        const res = await axios.get('/api/get-jobs?cursor=' + pageParam)
+        console.log(res.data)
+        return res.data
+      },
+  
+      initialPageParam: 1,
+      getNextPageParam: (lastPage) => lastPage.nextId ?? undefined,
+
+      
+    })
+
+  useEffect(() => {
+    if (inView && hasNextPage) {
+      fetchNextPage()
+    }
+  }, [inView])
+
+  if (isLoading) return <div className="loading">Loading...</div>
+  if (isError) return <div>Error! {JSON.stringify(error)}</div>
+  
   return (
     <section>
-      <div className='mx-auto max-w-6xl px-8 py-12 md:px-32'>
+      {/* <div className='mx-auto max-w-6xl px-8 py-12 md:px-32'>
         <div className='gird-cols-1 grid gap-2 border-b border-gray-200 pb-5 lg:grid-cols-2'>
           <h3 className='text-lg font-semibold leading-6 text-slate-900 lg:text-xl'>
             Latest jobs
@@ -112,7 +144,26 @@ export default function LatestJobs({}: Props) {
             />
           ))}
         </ul>
-      </div>
+      </div> */}
+      {data &&
+        data.pages.map((page:any) => {
+          return (
+            <React.Fragment key={page.nextId ?? 'lastPage'}>
+              {page.posts.map((post: { id: number; title: string; createdAt: Date }) => (
+                <div className="post" key={post.id}>
+                  <p>{post.id}</p>
+                  <p>{post.title}</p>
+                </div>
+              ))}
+            </React.Fragment>
+          )
+        })}
+
+      {isFetchingNextPage ? <div className="loading">Loading...</div> : null}
+
+      <span style={{ visibility: 'hidden' }} ref={ref}>
+        intersection observer marker
+      </span>
     </section>
   );
 }

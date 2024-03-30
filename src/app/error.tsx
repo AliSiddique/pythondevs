@@ -16,11 +16,9 @@ export default function Error({
     // Log the error to an error reporting service
     console.error(error);
   }, [error]);
-  const { data: session } = useSession();
 
   return (
     <div>
-      <Navbar session={session} />
       <div className='flex h-screen flex-col bg-white'>
         <img
           src='https://images.unsplash.com/photo-1558769132-cb1aea458c5e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1548&q=80'
