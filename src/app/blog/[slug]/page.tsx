@@ -36,13 +36,12 @@ export async function generateMetadata({ params }: Props) {
   }
 }
 export default async function page({ params }: Props) {
-  const session = await getServerSession(authOptions);
   const slug = params.slug;
   const { meta, content }: any = await getPageContent(slug);
 
   return (
     <div>
-      <Navbar session={session} />
+      <Navbar  />
       <div className='text-align  prose mx-auto max-w-3xl bg-white px-6 py-32 text-base leading-7 text-gray-700 lg:px-8'>
         <Image
           src={meta.featuredImage}

@@ -5,6 +5,8 @@ import { useEffect } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { useInView } from 'react-intersection-observer'
+import { Skeleton } from './ui/skeleton';
+import JobLoading from './JobLoading';
 
 type Props = {};
 
@@ -114,12 +116,29 @@ export default function LatestJobs({}: Props) {
     }
   }, [inView])
 
-  if (isLoading) return <div className="loading">Loading...</div>
+  if (isLoading) return (
+   <JobLoading />
+  )
   if (isError) return <div>Error! {JSON.stringify(error)}</div>
   
   return (
     <section>
-      {/* <div className='mx-auto max-w-6xl px-8 py-12 md:px-32'>
+
+      {/* {data &&
+        data.pages.map((page:any) => {
+          console.log(page)
+          return (
+            <React.Fragment key={page.nextId ?? 'lastPage'}>
+              {page.posts.map((post: { id: number; title: string; createdAt: Date }) => (
+                <div className="post" key={post.id}>
+                  <p>{post.id}</p>
+                  <p>{post.title}</p>
+                </div>
+              ))}
+            </React.Fragment>
+          )
+        })} */}
+   <div className='mx-auto max-w-6xl px-8 py-12 md:px-32'>
         <div className='gird-cols-1 grid gap-2 border-b border-gray-200 pb-5 lg:grid-cols-2'>
           <h3 className='text-lg font-semibold leading-6 text-slate-900 lg:text-xl'>
             Latest jobs
@@ -132,34 +151,29 @@ export default function LatestJobs({}: Props) {
         </div>
 
         <ul className='divide-y divide-slate-100'>
-          {allPosts.map((post) => (
-            <JobEntries
-              url={'/companies/' + post.slug}
-              type={post.data.type}
-              salary={post.data.salary}
-              location={post.data.location}
-              company={post.data.company}
-              position={post.data.position}
-              companyLogo={post.data.companyLogo.url}
-            />
-          ))}
-        </ul>
-      </div> */}
-      {data &&
+        {data &&
         data.pages.map((page:any) => {
+          console.log(page)
           return (
             <React.Fragment key={page.nextId ?? 'lastPage'}>
-              {page.posts.map((post: { id: number; title: string; createdAt: Date }) => (
-                <div className="post" key={post.id}>
-                  <p>{post.id}</p>
-                  <p>{post.title}</p>
-                </div>
+              {page.posts.map((post: any) => (
+               <JobEntries
+               url={'/companies/' + post.slug}
+               type={post.type}
+               salary={post.salary}
+               location={post.location}
+               company={post.company}
+               position={post.position}
+               companyLogo={post.companyLogo}
+             />
               ))}
             </React.Fragment>
           )
         })}
-
-      {isFetchingNextPage ? <div className="loading">Loading...</div> : null}
+    
+        </ul>
+      </div>
+      {isFetchingNextPage ? <JobLoading/> : null}
 
       <span style={{ visibility: 'hidden' }} ref={ref}>
         intersection observer marker

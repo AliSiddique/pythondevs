@@ -12,10 +12,9 @@ export const metadata = {
 export default async function Home() {
   const posts = await getAllPosts();
 
-  const session = await getServerSession(authOptions);
   return (
     <div>
-      <Navbar session={session} />
+      <Navbar  />
 
       <section className='body-font text-gray-600'>
         <div className='container mx-auto max-w-7xl px-5 py-24'>
