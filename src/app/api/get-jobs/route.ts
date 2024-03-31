@@ -4,7 +4,7 @@ import { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest, res: Response) {
  
-        const limit = 5
+        const limit = 20
         const cursor = req.nextUrl.searchParams.get('cursor') ?? ''
 
         const cursorObj = cursor === '' ? undefined : { id: parseInt(cursor as string, 10)}

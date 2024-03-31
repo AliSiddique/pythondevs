@@ -40,10 +40,10 @@ enum Database {
   MongoDB = 'mongodb',
 }
 export const config: Config = {
-  siteName: 'https://saasunderone.com',
-  title: 'SaaS Under One',
+  siteName: 'https://pythondevs.io',
+  title: 'Python devs',
   description:
-    'SaaS Under One is a platform for building, launching, and scaling your SaaS business.',
+    'Python devs is a platform for building, launching, and scaling your Python business.',
   twitter: 'https://twitter.com/saasunderone',
   theme: 'dark',
   Database: Database.Postgres,

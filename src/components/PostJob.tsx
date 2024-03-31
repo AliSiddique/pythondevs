@@ -25,6 +25,36 @@ type Props = {};
     const [job_salary, setJob_salary] = React.useState('')
     const [job_description, setJob_description] = React.useState('')
     const [job_apply_link, setJob_apply_link] = React.useState('')
+
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
+        const response = await fetch('/api/post-job', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                company_name,
+                company_website,
+                company_industry,
+                company_description,
+                company_logo,
+                company_linkedin,
+                job_title,
+                job_type,
+                job_location,
+                job_salary,
+                job_description,
+                job_apply_link,
+                color
+            }),
+        })
+        if (response.ok) {
+            toast.success('Job posted successfully')
+        } else {
+            toast.error('Failed to post job')
+        }
+    }
   
   return (
     <div>
@@ -108,7 +138,7 @@ type Props = {};
           <div>
             <div>
               <form
-                
+                onSubmit={handleSubmit}
                 className=' rounded-3xl border shadow-2xl shadow-slate-500/10 '
               >
                 <div>
@@ -160,6 +190,8 @@ type Props = {};
                         <div className='mt-2'>
                           <input
                             type='text'
+                            value={job_title}
+                            onChange={(event) => setJob_title(event.target.value)}
                             name='job-title'
                             className='block w-full rounded-lg border-0 bg-white py-2.5 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-200 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-purple-600 sm:text-sm sm:leading-6'
                           />
@@ -179,6 +211,8 @@ type Props = {};
                             type='text'
                             name='type'
                             id='job-type'
+                            value={job_type}
+                            onChange={(event) => setJob_type(event.target.value)}
                             className='block w-full rounded-lg border-0 bg-white py-2.5 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-200 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-purple-600 sm:text-sm sm:leading-6'
                           />
                         </div>
@@ -194,6 +228,8 @@ type Props = {};
                           <input
                             type='text'
                             name='location'
+                            value={job_location}
+                            onChange={(event) => setJob_location(event.target.value)}
                             id='job-location'
                             className='block w-full rounded-lg border-0 bg-white py-2.5 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-200 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-purple-600 sm:text-sm sm:leading-6'
                           />
@@ -209,6 +245,8 @@ type Props = {};
                         <div className='mt-2'>
                           <input
                             type='text'
+                            value={job_salary}
+                            onChange={(event) => setJob_salary(event.target.value)}
                             name='salary'
                             id='job-salary'
                             className='block w-full rounded-lg border-0 bg-white py-2.5 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-200 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-purple-600 sm:text-sm sm:leading-6'
@@ -227,6 +265,8 @@ type Props = {};
                             id='description'
                             name='description'
                             rows={3}
+                            value={job_description}
+                            onChange={(event) => setJob_description(event.target.value)}
                             className='block w-full rounded-lg border-0 py-2.5 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-200 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-purple-600 sm:text-sm sm:leading-6'
                           ></textarea>
                         </div>
@@ -265,6 +305,8 @@ type Props = {};
                             type='text'
                             name='companyWebsite'
                             id='company-website'
+                            value={company_website}
+                            onChange={(event) => setCompany_website(event.target.value)}
                             className='block w-full rounded-lg border-0 bg-white py-2.5 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-200 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-purple-600 sm:text-sm sm:leading-6'
                           />
                         </div>
@@ -281,6 +323,8 @@ type Props = {};
                             type='text'
                             name='companyLogo'
                             id='company-industry'
+                            value={company_industry}
+                            onChange={(event) => setCompany_industry(event.target.value)}
                             className='block w-full rounded-lg border-0 bg-white py-2.5 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-200 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-purple-600 sm:text-sm sm:leading-6'
                           />
                         </div>
@@ -297,6 +341,9 @@ type Props = {};
                             type='text'
                             name='linkedin'
                             id='linkedin'
+                            value={company_linkedin}
+                            onChange={(event) => setCompany_linkedin(event.target.value)}
+
                             className='block w-full rounded-lg border-0 bg-white py-2.5 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-200 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-purple-600 sm:text-sm sm:leading-6'
                           />
                         </div>
@@ -312,6 +359,8 @@ type Props = {};
                           <textarea
                             id='company-description'
                             name='companyDescription'
+                            value={company_description}
+                            onChange={(event) => setCompany_description(event.target.value)}
                             rows={3}
                             className='block w-full rounded-lg border-0 py-2.5 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-200 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-purple-600 sm:text-sm sm:leading-6'
                           ></textarea>
@@ -328,7 +377,8 @@ type Props = {};
                           <input
                             id='company-description'
                             name='companyDescription'
-                            
+                            value={job_apply_link}
+                            onChange={(event) => setJob_apply_link(event.target.value)}
                             className='block w-full rounded-lg border-0 py-2.5 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-200 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-purple-600 sm:text-sm sm:leading-6'
                           />
                         </div>
