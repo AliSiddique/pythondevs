@@ -36,7 +36,7 @@ export default function JobEntries({
             <div className={` bg-[${color}]  relative h-[3.125rem] w-[3.125rem] flex-none sm:h-[3.75rem] sm:w-[3.75rem]`}>
               <img
                 className='absolute inset-0 h-full w-full rounded-full object-cover'
-                src={"https://hirewise.lexingtonthemes.com/logos/coinbase.svg"}
+                src={companyLogo ?? "https://via.placeholder.com/150"}
                 alt=''
               />
               <div className='absolute inset-0 rounded-full ring-1 ring-inset ring-black/[0.08]'></div>

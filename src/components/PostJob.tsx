@@ -4,6 +4,8 @@ import { toast } from 'sonner';
 import { nanoid } from 'nanoid'
 import JobEntries from './JobEntries';
 import { useEffect } from 'react';
+import { UploadButton } from '@/lib/uploadthing';
+import { UploadDropzone } from '@uploadthing/react';
 
 type Props = {};
 
@@ -11,6 +13,18 @@ type Props = {};
 
  export default function PostJob({}: Props) {
     const [color, setColor] = React.useState('')
+    const [company_name, setCompany_name] = React.useState('')
+    const [company_website, setCompany_website] = React.useState('')
+    const [company_industry, setCompany_industry] = React.useState('')
+    const [company_description, setCompany_description] = React.useState('')
+    const [company_logo, setCompany_logo] = React.useState('')
+    const [company_linkedin, setCompany_linkedin] = React.useState('')
+    const [job_title, setJob_title] = React.useState('')
+    const [job_type, setJob_type] = React.useState('')
+    const [job_location, setJob_location] = React.useState('')
+    const [job_salary, setJob_salary] = React.useState('')
+    const [job_description, setJob_description] = React.useState('')
+    const [job_apply_link, setJob_apply_link] = React.useState('')
   
   return (
     <div>
@@ -79,8 +93,8 @@ type Props = {};
              
               </div>
               <JobEntries
-                    company={"Apple"}
-                    companyLogo={"https://hirewise.lexingtonthemes.com/logos/coinbase.svg"}
+                    company={company_name}
+                    companyLogo={company_logo}
                     position={"Software Engineer"}
                     url={"https://hirewise.lexingtonthemes.com/jobs/2"}
                     type={"Full-time"}
@@ -232,6 +246,8 @@ type Props = {};
                             type='text'
                             name='companyName'
                             id='company-name'
+                            value={company_name}
+                            onChange={(event) => setCompany_name(event.target.value)}
                             className='block w-full rounded-lg border-0 bg-white py-2.5 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-200 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-purple-600 sm:text-sm sm:leading-6'
                           />
                         </div>
@@ -323,6 +339,24 @@ type Props = {};
                             value={color} 
                             onChange={(event) => setColor(event.target.value)} 
                             />
+
+        {/* <svg className="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+        </svg> */}
+  <UploadButton
+  className='bg-purple-500 text-white rounded-full h-20 w-20 hover:opacity-40 px-4 py-2'
+        endpoint="imageUploader"
+        onClientUploadComplete={(res) => {
+          // Do something with the response
+          console.log("Files: ", res);
+          setCompany_logo(res[0].url);
+        }}
+        onUploadError={(error: Error) => {
+          // Do something with the error.
+          alert(`ERROR! ${error.message}`);
+        }}
+      />
+
                     </div>
 
                     <div className='col-span-full p-8'>
