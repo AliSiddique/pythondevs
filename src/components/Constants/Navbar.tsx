@@ -151,10 +151,10 @@ export default function Navbar() {
                    Home
                   </a>
                   <a
-                    href='/'
+                    href='/post-job'
                     className='mx-0 ml-6 inline-block w-full py-2 text-left text-sm font-medium text-slate-500 hover:text-slate-500 md:mx-2 md:w-auto md:text-center lg:mx-3 lg:px-0'
                   >
-                    Features
+                    Post Job
                   </a>
                 </div>
                 <div className='ml-auto flex w-full flex-col items-start justify-end pt-4 lg:w-1/3 lg:flex-row lg:items-center lg:py-0'>

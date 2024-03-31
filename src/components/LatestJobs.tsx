@@ -165,6 +165,7 @@ export default function LatestJobs({}: Props) {
                company={post.company}
                position={post.position}
                companyLogo={post.companyLogo}
+               color='white'
              />
               ))}
             </React.Fragment>

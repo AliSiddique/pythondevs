@@ -1,4 +1,6 @@
+"use client"
 import React from 'react';
+import { useState } from 'react';
 
 type Props = {
   company: string;
@@ -8,6 +10,8 @@ type Props = {
   type: string;
   salary: string;
   location: string;
+  color?: string;
+  setColor?: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export default function JobEntries({
@@ -18,14 +22,18 @@ export default function JobEntries({
   type,
   salary,
   location,
+  color,
+  setColor
 }: Props) {
+    
   return (
-    <div>
-      <li>
-        <div className='group relative py-6 sm:rounded-2xl'>
-          <div className='absolute -inset-x-4 -inset-y-px rounded-2xl bg-slate-50 opacity-0 duration-200 group-hover:opacity-100 sm:-inset-x-6 lg:-inset-x-8'></div>
-          <div className='relative flex items-center'>
-            <div className='relative h-[3.125rem] w-[3.125rem] flex-none sm:h-[3.75rem] sm:w-[3.75rem]'>
+    <div className={``}>
+      <li
+ className={`bg-[${color}] `}>
+        <div className={`group relative py-6 sm:rounded-2xl bg-[${color}]  `}>
+        <div style={{background:color}} className={`absolute -inset-x-4 -inset-y-px rounded-2xl opacity-100 duration-200 group-hover:opacity-100 sm:-inset-x-6 lg:-inset-x-8 ${color}`}></div>
+          <div className='relative flex items-center '>
+            <div className={` bg-[${color}]  relative h-[3.125rem] w-[3.125rem] flex-none sm:h-[3.75rem] sm:w-[3.75rem]`}>
               <img
                 className='absolute inset-0 h-full w-full rounded-full object-cover'
                 src={"https://hirewise.lexingtonthemes.com/logos/coinbase.svg"}
@@ -57,7 +65,8 @@ export default function JobEntries({
                 <dt className='sr-only'>Title</dt>
                 <dd className='text-base font-semibold leading-6 text-slate-900'>
                   <a href={"/jobs/2"}>
-                    <span className='absolute -inset-x-4 inset-y-[calc(-1*(theme(spacing.6)+1px))] sm:-inset-x-6 sm:rounded-2xl lg:-inset-x-8'></span>
+                    <span        
+ className={`absolute bg-[${color}] -inset-x-4 inset-y-[calc(-1*(theme(spacing.6)+1px))] sm:-inset-x-6 sm:rounded-2xl lg:-inset-x-8`}></span>
                     {position}
                   </a>
                 </dd>
