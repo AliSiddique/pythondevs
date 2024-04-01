@@ -36,6 +36,10 @@ export default async function FeaturedJobs({}: Props) {
                 companyLogo={
                   'https://hirewise.lexingtonthemes.com/logos/behance.svg'
                 }
+                color={job.color ?? 'bg-slate-500'}
+                tags={job.tags ?? []}
+                apply_link={job.apply_link ?? 'https://hirewise.lexingtonthemes.com/'}
+                id={job.id as any}
               />
             ))}
           </ul>
