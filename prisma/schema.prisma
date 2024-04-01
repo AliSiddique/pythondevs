@@ -73,9 +73,11 @@ model JobPost {
   company_website String
   company_description String
   linkedin_in String
+  apply_link String?
   featured  Boolean 
   company_color String?
   remote    Boolean?
+  color     String?
   tags      String[] @default([])
   created_at DateTime @default(now())
   

@@ -22,6 +22,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Button } from './ui/button';
+import { loadStripe } from '@stripe/stripe-js';
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
@@ -87,11 +88,19 @@ const FormSchema = z.object({
                 color,
                 company_email,
                 remote,
+                tags
 
             }),
         })
+        const data = await response.json()
+        const stripePromise = await loadStripe(
+          process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string
+        );
+        if (stripePromise)
+          await stripePromise.redirectToCheckout({ sessionId: data.id });
         if (response.ok) {
             toast.success('Job posted successfully')
+
         } else {
             toast.error('Failed to post job')
         }
@@ -173,6 +182,8 @@ const FormSchema = z.object({
                     location={"San Francisco, CA"}
                     color={color}
                     setColor={setColor}
+                    apply_link={"https://hirewise.lexingtonthemes.com/jobs/2"}
+                    id={"1"}
                     />
             </div>
           </div>
@@ -450,7 +461,7 @@ const FormSchema = z.object({
                             />
            
 
- {/* <UploadButton
+ <UploadButton
         endpoint="imageUploader"
         onClientUploadComplete={(res) => {
           // Do something with the response
@@ -461,7 +472,7 @@ const FormSchema = z.object({
           // Do something with the error.
           alert(`ERROR! ${error.message}`);
         }}
-      /> */}
+      /> 
 
                     </div>
 

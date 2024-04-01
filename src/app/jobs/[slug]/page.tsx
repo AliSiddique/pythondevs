@@ -1,8 +1,24 @@
 import React from 'react';
+import { db } from '../../../../prisma/client';
+import { JobPost } from '@prisma/client';
 
-type Props = {};
+type Props = {
+  params: {
+    slug: string;
+  }
+};
+const getJob = async (slug: string) => {
+  const res:any = await db.jobPost.findUnique({
+    where: {
+      id: parseInt(slug),
+    },
+  });
+  
+  return res;
+}
 
-export default function page({}: Props) {
+export default async function page({params}: Props) {
+  const job:JobPost = await getJob(params.slug);
   return (
     <div>
       <section>
@@ -12,11 +28,11 @@ export default function page({}: Props) {
               <div className='h-12 w-12 flex-none'>
                 <img
                   className='inset-0 h-full w-full rounded-full object-cover'
-                  src={'https://hirewise.lexingtonthemes.com/logos/marvel.svg'}
+                  src={job.company_logo}
                 />
               </div>
               <h2 className='font-display mt-8 text-3xl font-normal tracking-tight text-slate-900 md:mt-0 lg:text-4xl'>
-                SWR at <span className='italic'>Google</span>
+                SWR at <span className='italic'>{job.company_name}</span>
               </h2>
             </div>
             <dl className='mt-12 grid grid-cols-2 gap-x-8 gap-y-12 sm:grid-cols-3 sm:gap-y-16 lg:grid-cols-5'>
@@ -41,7 +57,7 @@ export default function page({}: Props) {
                   Location
                 </dt>
                 <dd className='text-base font-semibold tracking-tight text-slate-900'>
-                  London
+                  {job.location}
                 </dd>
               </div>
               <div className='flex flex-col gap-y-3 border-l pl-6'>
@@ -64,7 +80,7 @@ export default function page({}: Props) {
                   Department
                 </dt>
                 <dd className='text-base font-semibold tracking-tight text-slate-900'>
-                  Engineering
+                 {job.department}
                 </dd>
               </div>
               <div className='flex flex-col gap-y-3 border-l pl-6'>
@@ -115,7 +131,7 @@ export default function page({}: Props) {
                   Type
                 </dt>
                 <dd className='text-base font-semibold tracking-tight text-slate-900'>
-                  Full-time
+                  {job.type}
                 </dd>
               </div>
               <div className='flex flex-col gap-y-3 border-l pl-6'>
@@ -140,7 +156,7 @@ export default function page({}: Props) {
                   Salary
                 </dt>
                 <dd className='text-base font-semibold tracking-tight text-slate-900'>
-                  £100k - £150k
+                  £{job.salary}
                 </dd>
               </div>
             </dl>
@@ -195,7 +211,7 @@ export default function page({}: Props) {
           </div>
           <div className='py-6'>
             <a
-              href='#_'
+              href={job.apply_link ?? ""}
               className='inline-flex w-full items-center rounded-full bg-purple-500 px-5 py-3 text-sm leading-4 text-white duration-200 hover:bg-purple-50 hover:text-purple-500 focus:outline-none focus:ring-0 focus:ring-purple-500 focus:ring-offset-2 md:w-auto md:focus:ring-2'
             >
               Apply now

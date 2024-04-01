@@ -162,10 +162,13 @@ export default function LatestJobs({}: Props) {
                type={post.type}
                salary={post.salary}
                location={post.location}
-               company={post.company}
+               company={post.company_name}
                position={post.position}
-               companyLogo={post.companyLogo}
-               color='white'
+               companyLogo={post.company_logo}
+               color={post.color}
+                tags={post.tags}
+                apply_link={post.apply_link}
+                id={post.id}
              />
               ))}
             </React.Fragment>

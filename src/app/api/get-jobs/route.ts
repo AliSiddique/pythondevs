@@ -11,6 +11,11 @@ export async function GET(req: NextRequest, res: Response) {
 
 
         const posts = await db.jobPost.findMany({
+            orderBy: [
+                {
+                    created_at: 'asc',
+                }
+              ],
             skip: cursor !== '' ? 1 : 0,
             cursor: cursorObj,
             take: limit,

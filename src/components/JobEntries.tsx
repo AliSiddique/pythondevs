@@ -1,6 +1,9 @@
 "use client"
 import React from 'react';
 import { useState } from 'react';
+import { Badge } from './ui/badge';
+import { Button } from './ui/button';
+import Link from 'next/link';
 
 type Props = {
   company: string;
@@ -12,6 +15,9 @@ type Props = {
   location: string;
   color?: string;
   setColor?: React.Dispatch<React.SetStateAction<string>>;
+  tags?: string[];
+  apply_link: string;
+  id: string;
 };
 
 export default function JobEntries({
@@ -23,7 +29,10 @@ export default function JobEntries({
   salary,
   location,
   color,
-  setColor
+  setColor,
+  tags,
+  apply_link,
+  id,
 }: Props) {
     
   return (
@@ -59,12 +68,17 @@ export default function JobEntries({
                     <circle cx='1' cy='1' r='1'></circle>
                   </svg>
                   {location}
+                  <Button >
+                    <Link href={apply_link ?? ""}>
+                      Apply
+                    </Link>
+                  </Button>
                 </dd>
               </div>
               <div className='col-span-2 col-start-1 w-full flex-none'>
                 <dt className='sr-only'>Title</dt>
                 <dd className='text-base font-semibold leading-6 text-slate-900'>
-                  <a href={"/jobs/2"}>
+                  <a href={`/jobs/${id}`}>
                     <span        
  className={`absolute bg-[${color}] -inset-x-4 inset-y-[calc(-1*(theme(spacing.6)+1px))] sm:-inset-x-6 sm:rounded-2xl lg:-inset-x-8`}></span>
                     {position}
@@ -86,7 +100,13 @@ export default function JobEntries({
                     <circle cx='1' cy='1' r='1'></circle>
                   </svg>
                   {salary}
+                  {tags?.map((tag) => (
+                    <Badge key={tag} variant='secondary' >
+                      {tag}
+                    </Badge>
+                ))}
                 </dd>
+               
               </div>
             </dl>
           </div>
