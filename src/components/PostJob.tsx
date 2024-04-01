@@ -6,25 +6,63 @@ import JobEntries from './JobEntries';
 import { useEffect } from 'react';
 import { UploadButton } from '@/lib/uploadthing';
 import { UploadDropzone } from '@uploadthing/react';
-
+import { useState } from 'react'
+import { Switch } from '@headlessui/react'
+import { Tag, TagInput } from './ui/tag-input';
+import { z } from 'zod';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Button } from './ui/button';
+function classNames(...classes: string[]) {
+  return classes.filter(Boolean).join(' ')
+}
 type Props = {};
-
+const FormSchema = z.object({
+  topics: z.array(
+    z.object({
+      id: z.string(),
+      text: z.string(),
+    })
+  ),
+});
 
 
  export default function PostJob({}: Props) {
     const [color, setColor] = React.useState('')
-    const [company_name, setCompany_name] = React.useState('')
-    const [company_website, setCompany_website] = React.useState('')
-    const [company_industry, setCompany_industry] = React.useState('')
-    const [company_description, setCompany_description] = React.useState('')
+    const [company_name, setCompany_name] = React.useState('Apple')
+    const [company_email, setCompany_email] = React.useState('alisiddique10@hotmail.com')
+    const form = useForm<z.infer<typeof FormSchema>>({
+      resolver: zodResolver(FormSchema),
+    });
+  
+    const [tags, setTags] = React.useState<Tag[]>([]);
+  
+    const { setValue } = form;
+  
+    function onSubmit(data: z.infer<typeof FormSchema>) {
+      toast("hi");
+    }
+    const [company_website, setCompany_website] = React.useState('https://apple.com')
+    const [company_industry, setCompany_industry] = React.useState('Software')
+    const [company_description, setCompany_description] = React.useState('A great company to work for')
     const [company_logo, setCompany_logo] = React.useState('')
-    const [company_linkedin, setCompany_linkedin] = React.useState('')
-    const [job_title, setJob_title] = React.useState('')
-    const [job_type, setJob_type] = React.useState('')
-    const [job_location, setJob_location] = React.useState('')
-    const [job_salary, setJob_salary] = React.useState('')
-    const [job_description, setJob_description] = React.useState('')
-    const [job_apply_link, setJob_apply_link] = React.useState('')
+    const [company_linkedin, setCompany_linkedin] = React.useState('https://linkedin.com/company/apple')
+    const [job_title, setJob_title] = React.useState('Backend Developer')
+    const [job_type, setJob_type] = React.useState('Mid-level')
+    const [job_location, setJob_location] = React.useState('California, USA')
+    const [job_salary, setJob_salary] = React.useState('120,000')
+    const [job_description, setJob_description] = React.useState('Need a backend developer to work on our new project')
+    const [job_apply_link, setJob_apply_link] = React.useState('https://apple.com/jobs/1')
+    const [remote, setRemote] = React.useState(false)
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
@@ -46,7 +84,10 @@ type Props = {};
                 job_salary,
                 job_description,
                 job_apply_link,
-                color
+                color,
+                company_email,
+                remote,
+
             }),
         })
         if (response.ok) {
@@ -161,7 +202,7 @@ type Props = {};
                         </div>
                       </div> */}
 
-                      <div className='sm:col-span-3'>
+                      <div className='sm:col-span-full'>
                         <label
                           htmlFor='email'
                           className='block text-sm font-medium leading-6 text-slate-900'
@@ -171,6 +212,8 @@ type Props = {};
                         <div className='mt-2'>
                           <input
                             type='email'
+                            value={company_email}
+                            onChange={(event) => setCompany_email(event.target.value)}
                             name='email'
                             id='last-name'
                             className='block w-full rounded-lg border-0 bg-white py-2.5 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-200 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-purple-600 sm:text-sm sm:leading-6'
@@ -383,17 +426,31 @@ type Props = {};
                           />
                         </div>
                       </div>
-                      <input type='checkbox' name='terms' id='terms' />
+                      <Switch
+      checked={remote}
+      onChange={setRemote}
+      className={classNames(
+        remote ? 'bg-indigo-600' : 'bg-gray-200',
+        'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2'
+      )}
+    >
+      <span className="sr-only">Use setting</span>
+      <span
+        aria-hidden="true"
+        className={classNames(
+          remote ? 'translate-x-5' : 'translate-x-0',
+          'pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
+        )}
+      />
+    </Switch>
                       <input 
                             type="color" 
                             value={color} 
                             onChange={(event) => setColor(event.target.value)} 
                             />
+           
 
-        {/* <svg className="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-        </svg> */}
- <UploadButton
+ {/* <UploadButton
         endpoint="imageUploader"
         onClientUploadComplete={(res) => {
           // Do something with the response
@@ -404,7 +461,7 @@ type Props = {};
           // Do something with the error.
           alert(`ERROR! ${error.message}`);
         }}
-      />
+      /> */}
 
                     </div>
 
@@ -427,6 +484,39 @@ type Props = {};
           </div>
         </div>
       </dl>
+      <Form {...form}>
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="space-y-8 flex flex-col items-start"
+              >
+                <FormField
+                  control={form.control}
+                  name="topics"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-col items-start">
+                      <FormLabel className="text-left">Topics</FormLabel>
+                      <FormControl>
+                        <TagInput
+                          {...field}
+                          placeholder="Enter a topic"
+                          tags={tags}
+                          className="sm:min-w-[450px]"
+                          setTags={(newTags) => {
+                            setTags(newTags);
+                            setValue("topics", newTags as [Tag, ...Tag[]]);
+                          }}
+                        />
+                      </FormControl>
+                      <FormDescription>
+                        These are the topics that you&apos;re interested in.
+                      </FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <Button type="submit">Submit</Button>
+              </form>
+            </Form>
     </div>
   );
 }

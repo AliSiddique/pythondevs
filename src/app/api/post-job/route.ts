@@ -5,7 +5,25 @@ import { NextResponse } from 'next/server';
 
 export async function POST(req: Request) {
 
-  // const {company_name,company_website,company_website,}
+  const {
+    company_name,
+company_website,
+company_industry,
+company_description,
+company_logo,
+company_linkedin,
+job_title,
+job_type,
+job_location,
+job_salary,
+job_description,
+job_apply_link,
+company_email,
+tags,
+remote,
+color
+  } = await req.json();
+  console.log(company_name,company_website,company_industry,company_description,company_logo,company_linkedin,job_title,job_type,job_location,job_salary,job_description,job_apply_link,company_email,tags,remote,color);
   // const params: Stripe.Checkout.SessionCreateParams = {
   //   payment_method_types: ['card', 'paypal'],
   //   mode: 'payment', // Change mode to 'subscription'
