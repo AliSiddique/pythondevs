@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input"
 export default function SearchPokemon() {
   const searchParams = useSearchParams()
   const pathname = usePathname()
-  const { replace } = useRouter()
+  const router = useRouter()
 
   const handleSearch = useDebouncedCallback((query: string) => {
     const params = new URLSearchParams(searchParams)
@@ -17,9 +17,10 @@ export default function SearchPokemon() {
       params.set("query", query)
       params.set("page", "1")
     } else {
-      params.delete("query")
+      params.set("query", "")
     }
-    replace(`${pathname}?${params.toString()}`)
+    router.replace(`${pathname}?${params.toString()}`)
+    // router.push(`${pathname}?${params.toString()}`)
   }, 300)
 
   return (
