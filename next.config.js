@@ -3,7 +3,7 @@
 const withMDX = require('@next/mdx')();
 const nextConfig = {
   images: {
-    domains: ['images.unsplash.com'],
+    domains: ['images.unsplash.com','raw.githubusercontent.com'],
   },
   // Configure `pageExtensions` to include MDX files
   pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],

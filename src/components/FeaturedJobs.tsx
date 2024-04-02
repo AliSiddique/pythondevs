@@ -40,6 +40,7 @@ export default async function FeaturedJobs({}: Props) {
                 tags={job.tags ?? []}
                 apply_link={job.apply_link ?? 'https://hirewise.lexingtonthemes.com/'}
                 id={job.id as any}
+                title={job.title}
               />
             ))}
           </ul>

@@ -169,6 +169,7 @@ export default function LatestJobs({}: Props) {
                 tags={post.tags}
                 apply_link={post.apply_link}
                 id={post.id}
+                title={post.title}
              />
               ))}
             </React.Fragment>

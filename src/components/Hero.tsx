@@ -33,7 +33,7 @@ export default function Hero({}: Props) {
     const down = (e: KeyboardEvent) => {
       if (e.key === "Enter") {
         e.preventDefault()
-        router.push(`/search?q=${search}`)
+        router.push(`/search?page=1&query=${search}`)
       }
     }
  

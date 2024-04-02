@@ -18,6 +18,7 @@ type Props = {
   tags?: string[];
   apply_link: string;
   id: string;
+  title: string;
 };
 
 export default function JobEntries({
@@ -33,6 +34,7 @@ export default function JobEntries({
   tags,
   apply_link,
   id,
+  title,
 }: Props) {
     
   return (
@@ -40,7 +42,7 @@ export default function JobEntries({
       <li
  className={`bg-[${color}] `}>
         <div className={`group relative py-6 sm:rounded-2xl bg-[${color}]  `}>
-        <div style={{background:color}} className={`absolute -inset-x-4 -inset-y-px rounded-2xl opacity-100 duration-200 group-hover:opacity-100 sm:-inset-x-6 lg:-inset-x-8 ${color}`}></div>
+        <div style={{background:color}} className={`absolute -inset-x-4 -inset-y-px  opacity-100 duration-200 group-hover:opacity-100 sm:-inset-x-6 lg:-inset-x-8 ${color}`}></div>
           <div className='relative flex items-center '>
             <div className={` bg-[${color}]  relative h-[3.125rem] w-[3.125rem] flex-none sm:h-[3.75rem] sm:w-[3.75rem]`}>
               <img
@@ -54,7 +56,7 @@ export default function JobEntries({
               <div className='col-span-2 mr-2.5 flex-none sm:mr-0'>
                 <dt className='sr-only'>Company</dt>
                 <dd className='text-xs font-semibold leading-6 text-slate-500'>
-                  {company}
+                  {company} {title}
                 </dd>
               </div>
               <div className='col-start-3 row-start-2 -ml-2.5 flex-auto sm:ml-0 sm:pl-6'>
@@ -81,7 +83,7 @@ export default function JobEntries({
                   <a href={`/jobs/${id}`}>
                     <span        
  className={`absolute bg-[${color}] -inset-x-4 inset-y-[calc(-1*(theme(spacing.6)+1px))] sm:-inset-x-6 sm:rounded-2xl lg:-inset-x-8`}></span>
-                    {position}
+                    {title}
                   </a>
                 </dd>
               </div>
@@ -99,7 +101,7 @@ export default function JobEntries({
                   >
                     <circle cx='1' cy='1' r='1'></circle>
                   </svg>
-                  {salary}
+                  {salary} 
                   {tags?.map((tag) => (
                     <Badge key={tag} variant='secondary' >
                       {tag}

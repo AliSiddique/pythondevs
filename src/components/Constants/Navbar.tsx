@@ -144,25 +144,25 @@ export default function Navbar() {
                   {/* <span>Hire Wise</span> */}
                 </a>
                 <div className='flex w-full flex-col items-start justify-center text-center lg:mt-0 lg:w-2/3 lg:flex-row lg:items-center lg:space-x-8'>
-                  <a
+                  {/* <a
                     href='/'
                     className='mx-0 ml-6 inline-block w-full py-2 text-left text-sm font-medium text-slate-500 hover:text-slate-500 md:mx-2 md:w-auto md:text-center lg:mx-3 lg:px-0'
                   >
                    Home
                   </a>
                   <a
-                    href='/post-job'
+                    href='/post-job-featured'
                     className='mx-0 ml-6 inline-block w-full py-2 text-left text-sm font-medium text-slate-500 hover:text-slate-500 md:mx-2 md:w-auto md:text-center lg:mx-3 lg:px-0'
                   >
                     Post Job
-                  </a>
+                  </a> */}
                 </div>
                 <div className='ml-auto flex w-full flex-col items-start justify-end pt-4 lg:w-1/3 lg:flex-row lg:items-center lg:py-0'>
                   <a
-                    href='/'
+                    href='/post-job-featured'
                     className='inline-flex w-full items-center bg-purple-500 px-5 py-3 text-sm leading-4 text-white duration-200 hover:bg-purple-50 hover:text-purple-500 focus:outline-none focus:ring-0 focus:ring-purple-500 focus:ring-offset-2 lg:w-auto lg:rounded-full lg:focus:ring-2'
                   >
-                    Buy
+                    Post a Job - $199
                   </a>
                 </div>
               </div>

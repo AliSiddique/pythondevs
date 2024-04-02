@@ -92,12 +92,12 @@ const FormSchema = z.object({
 
             }),
         })
-        const data = await response.json()
-        const stripePromise = await loadStripe(
-          process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string
-        );
-        if (stripePromise)
-          await stripePromise.redirectToCheckout({ sessionId: data.id });
+        // const data = await response.json()
+        // const stripePromise = await loadStripe(
+        //   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string
+        // );
+        // if (stripePromise)
+        //   await stripePromise.redirectToCheckout({ sessionId: data.id });
         if (response.ok) {
             toast.success('Job posted successfully')
 
@@ -184,6 +184,7 @@ const FormSchema = z.object({
                     setColor={setColor}
                     apply_link={"https://hirewise.lexingtonthemes.com/jobs/2"}
                     id={"1"}
+                    title={"Software Engineer"}
                     />
             </div>
           </div>

@@ -63,7 +63,13 @@ CREATE TABLE "JobPost" (
     "company_website" TEXT NOT NULL,
     "company_description" TEXT NOT NULL,
     "linkedin_in" TEXT NOT NULL,
+    "apply_link" TEXT,
     "featured" BOOLEAN NOT NULL,
+    "company_color" TEXT,
+    "remote" BOOLEAN,
+    "color" TEXT,
+    "tags" TEXT[] DEFAULT ARRAY[]::TEXT[],
+    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "JobPost_pkey" PRIMARY KEY ("id")
 );
