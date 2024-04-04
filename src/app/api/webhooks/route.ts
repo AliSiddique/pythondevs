@@ -29,22 +29,23 @@ export async function POST(req: Request) {
     // Retrieve the subscription details from Stripe.
  
       // metadata is the data we passed in the checkout session.
-    const job_id = session.metadata?.job_id;
-    if (!job_id) {
-      return new Response(null, { status: 400 });
-    }
-    const jobsPost = await db.jobPost.findUnique(
-      {
-        where: {
-          id: parseInt(job_id)
-        }
-      }
-    )
-    console.log(jobsPost)
-    if(!jobsPost) {
-      return new Response(null, { status: 404 });
-    }
-    jobsPost.featured = true
+      return new Response(null, { status: 200 });
+    // const job_id = session.metadata?.job_id;
+    // if (!job_id) {
+    //   return new Response(null, { status: 400 });
+    // }
+    // const jobsPost = await db.jobPost.findUnique(
+    //   {
+    //     where: {
+    //       id: parseInt(job_id)
+    //     }
+    //   }
+    // )
+    // console.log(jobsPost)
+    // if(!jobsPost) {
+    //   return new Response(null, { status: 404 });
+    // }
+    // jobsPost.featured = true
 
     // Update the user stripe into in our database.
     // Since this is the initial subscription, we need to update
@@ -54,24 +55,25 @@ export async function POST(req: Request) {
 
   if (event.type === 'invoice.payment_succeeded') {
     // Retrieve the subscription details from Stripe.
-  
-    const job_id = session.metadata?.job_id
-    if (!job_id) {
-      return new Response(null, { status: 400 });
-    }
-    const jobsPost = await db.jobPost.findUnique(
-      {
-        where: {
-          id: parseInt(job_id)
-        }
-      }
-    )
+    return new Response(null, { status: 200 });
 
-    console.log(jobsPost)
-    if(!jobsPost) {
-      return new Response(null, { status: 404 });
-    }
-    jobsPost.featured = true
+    // const job_id = session.metadata?.job_id
+    // if (!job_id) {
+    //   return new Response(null, { status: 400 });
+    // }
+    // const jobsPost = await db.jobPost.findUnique(
+    //   {
+    //     where: {
+    //       id: parseInt(job_id)
+    //     }
+    //   }
+    // )
+
+    // console.log(jobsPost)
+    // if(!jobsPost) {
+    //   return new Response(null, { status: 404 });
+    // }
+    // jobsPost.featured = true
     // Update the price id and set the new period end.
    
   }
