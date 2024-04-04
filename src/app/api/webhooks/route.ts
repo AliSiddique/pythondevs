@@ -27,11 +27,12 @@ export async function POST(req: Request) {
 
   if (event.type === 'checkout.session.completed') {
     // Retrieve the subscription details from Stripe.
-    const subscription = await stripe.subscriptions.retrieve(
-      session.subscription as string
-    );
+ 
       // metadata is the data we passed in the checkout session.
-    const job_id = subscription.metadata.job_id
+    const job_id = session.metadata?.job_id;
+    if (!job_id) {
+      return new Response(null, { status: 400 });
+    }
     const jobsPost = await db.jobPost.findUnique(
       {
         where: {
@@ -52,10 +53,7 @@ export async function POST(req: Request) {
 
   if (event.type === 'invoice.payment_succeeded') {
     // Retrieve the subscription details from Stripe.
-    const subscription = await stripe.subscriptions.retrieve(
-      session.subscription as string
-    );
-    console.log(subscription.id);
+  
 
     // Update the price id and set the new period end.
    
