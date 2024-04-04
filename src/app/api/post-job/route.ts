@@ -46,7 +46,7 @@ color,
       remote,
       color,
       company_color:color,
-        featured: true,
+        featured: false,
     },
   });
   const params: Stripe.Checkout.SessionCreateParams = {
