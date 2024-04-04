@@ -30,23 +30,24 @@ export async function POST(req: Request) {
     const subscription = await stripe.subscriptions.retrieve(
       session.subscription as string
     );
+      // metadata is the data we passed in the checkout session.
+    const job_id = subscription.metadata.job_id
+    const jobsPost = await db.jobPost.findUnique(
+      {
+        where: {
+          id: parseInt(job_id)
+        }
+      }
+    )
+    if(!jobsPost) {
+      return new Response(null, { status: 404 });
+    }
+    jobsPost.featured = true
 
     // Update the user stripe into in our database.
     // Since this is the initial subscription, we need to update
     // the subscription id and customer id.
-    await db.user.update({
-      where: {
-        email: session?.customer_email as string,
-      },
-      data: {
-        stripeSubscriptionId: subscription.id,
-        stripeCustomerId: subscription.customer as string,
-        stripePriceId: subscription.items.data[0].price.id,
-        stripeCurrentPeriodEnd: new Date(
-          subscription.current_period_end * 1000
-        ),
-      },
-    });
+   
   }
 
   if (event.type === 'invoice.payment_succeeded') {
@@ -57,17 +58,7 @@ export async function POST(req: Request) {
     console.log(subscription.id);
 
     // Update the price id and set the new period end.
-    await db.user.update({
-      where: {
-        stripeSubscriptionId: subscription.id,
-      },
-      data: {
-        stripePriceId: subscription.items.data[0].price.id,
-        stripeCurrentPeriodEnd: new Date(
-          subscription.current_period_end * 1000
-        ),
-      },
-    });
+   
   }
   if (event.type === 'checkout.session.expired') {
     // If the payment failed, we want to cancel the subscription.
@@ -81,35 +72,8 @@ export async function POST(req: Request) {
       console.log(error);
     }
   }
-  if (event.type === 'customer.subscription.trial_will_end') {
-    const { data, error } = await resend.emails.send({
-      from: config.fromEmail as string,
-      to: session.customer_email as string,
-      subject: 'Your trial is ending soon! 🤔',
-      react: AppleReceiptEmail(),
-    });
-  }
 
-  if (event.type === 'customer.subscription.updated') {
-    // Retrieve the subscription details from Stripe.
-    const subscription = await stripe.subscriptions.retrieve(
-      session.subscription as string
-    );
-    console.log(subscription.id);
 
-    // Update the price id and set the new period end.
-    await db.user.update({
-      where: {
-        stripeSubscriptionId: subscription.id,
-      },
-      data: {
-        stripePriceId: subscription.items.data[0].price.id,
-        stripeCurrentPeriodEnd: new Date(
-          subscription.current_period_end * 1000
-        ),
-      },
-    });
-  }
 
   return new Response(null, { status: 200 });
 }

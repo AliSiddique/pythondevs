@@ -67,9 +67,8 @@ color,
     cancel_url: `http://localhost:3000/`,
   };
 
-  // const checkoutSession: Stripe.Checkout.Session =
-  //   await stripe.checkout.sessions.create(params);
-  // console.log(checkoutSession);
-  // return NextResponse.json({ id: checkoutSession.id});
-  return NextResponse.json({ id: job.id });
+  const checkoutSession: Stripe.Checkout.Session =
+    await stripe.checkout.sessions.create(params);
+  console.log(checkoutSession);
+  return NextResponse.json({ id: checkoutSession.id});
 }

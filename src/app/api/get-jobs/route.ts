@@ -19,7 +19,11 @@ export async function GET(req: NextRequest, res: Response) {
             skip: cursor !== '' ? 1 : 0,
             cursor: cursorObj,
             take: limit,
+            where: {
+                featured: true,
+            }
         })
+        console.log(posts)
         // if (posts.length === 0) {
         //   return NextResponse.json({ posts: [], nextId: 0 })
         // }

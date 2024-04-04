@@ -74,7 +74,7 @@ model JobPost {
   company_description String
   linkedin_in String
   apply_link String?
-  featured  Boolean 
+  featured  Boolean  @default(false)
   company_color String?
   remote    Boolean?
   color     String?
