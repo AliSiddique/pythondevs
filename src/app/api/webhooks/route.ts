@@ -17,7 +17,7 @@ export async function POST(req: Request) {
     event = stripe.webhooks.constructEvent(
       body,
       signature,
-      process.env.STRIPE_WEBHOOK_SECRET as string
+     "whsec_LrBk50FqowER6eTQx7KRrwWGYnsB0ixq"
     );
   } catch (error: any) {
     return new Response(`Webhook Error: ${error.message}`, { status: 400 });
@@ -66,6 +66,7 @@ export async function POST(req: Request) {
         }
       }
     )
+
     console.log(jobsPost)
     if(!jobsPost) {
       return new Response(null, { status: 404 });
