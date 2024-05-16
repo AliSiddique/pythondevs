@@ -122,6 +122,7 @@ export default function PostJob() {
   return (
     <div>
       <dl className='mx-auto mt-8 w-full max-w-6xl items-start gap-8 text-left text-sm lg:grid-cols-3 md:grid-cols-1 px-8 py-5'>
+        
         <div className=' grid w-full grid-cols-1 gap-12 lg:grid-cols-2'>
           <div>
             <div className='lg:col-span-full'>

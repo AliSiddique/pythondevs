@@ -49,7 +49,7 @@ export default function Hero({title,description}: Props) {
   return (
     <section>
         <header className='mx-auto max-w-7xl px-8 pt-8'>
-          <div className='rounded-3xl bg-gradient-to-tr from-purple-700 via-purple-500 to-purple-300 p-8 lg:px-20 lg:py-32'>
+          <div className='rounded-3xl bg-gradient-to-tr from-[#4584b6] via-[#4584b6] to-sky-300 p-8 lg:px-20 lg:py-32'>
             <div className='mx-auto max-w-xl text-center'>
               <span className='relative rounded-full bg-white/10 px-4 py-2 text-sm leading-6 text-white ring-1 ring-white/20'>
                 {title}

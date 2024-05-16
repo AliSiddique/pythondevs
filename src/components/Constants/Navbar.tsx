@@ -160,7 +160,7 @@ export default function Navbar() {
                 <div className='ml-auto flex w-full flex-col items-start justify-end pt-4 lg:w-1/3 lg:flex-row lg:items-center lg:py-0'>
                   <a
                     href='/post-job-featured'
-                    className='inline-flex w-full items-center bg-purple-500 px-5 py-3 text-sm leading-4 text-white duration-200 hover:bg-purple-50 hover:text-purple-500 focus:outline-none focus:ring-0 focus:ring-purple-500 focus:ring-offset-2 lg:w-auto lg:rounded-full lg:focus:ring-2'
+                    className='inline-flex w-full items-center bg-[#4584b6] px-5 py-3 text-sm leading-4 text-white duration-200 hover:bg-purple-50 hover:text-purple-500 focus:outline-none focus:ring-0 focus:ring-purple-500 focus:ring-offset-2 lg:w-auto lg:rounded-full lg:focus:ring-2'
                   >
                     Post a Job - $199
                   </a>

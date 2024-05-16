@@ -127,7 +127,7 @@ export default function JobEntries({
       >
         <img
           className="absolute inset-0 h-full w-full rounded-full object-cover"
-          src={companyLogo}
+          src={companyLogo ?? "/logo.png"}
           alt=""
         />
         <div

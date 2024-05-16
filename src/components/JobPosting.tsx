@@ -8,7 +8,7 @@ export default function JobPosting({}: Props) {
               <section>
         <div className='mx-auto max-w-7xl px-8 py-12 md:px-32'>
           <div className='grid grid-cols-1 gap-2 md:grid-cols-2'>
-            <div className='relative overflow-hidden rounded-3xl border bg-gradient-to-tr from-purple-700 via-purple-500 to-purple-300 p-8 shadow-2xl shadow-slate-500/30'>
+            <div className='relative overflow-hidden rounded-3xl border bg-gradient-to-tr from-[#4584b6] via-[#4584b6] to-sky-300 p-8 shadow-2xl shadow-slate-500/30'>
               <div className='relative w-full'>
                 <p className='text-lg font-medium text-white'>
                   Post a featured job offer
