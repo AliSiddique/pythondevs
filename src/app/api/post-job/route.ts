@@ -3,16 +3,33 @@ import Stripe from 'stripe';
 import { NextResponse } from 'next/server';
 import { db } from '../../../../prisma/client';
 import { JobPost } from '@prisma/client';
+import { put } from '@vercel/blob';
+import { nanoid } from 'nanoid';
 
 
 export async function POST(req: Request) {
+  const { searchParams } = new URL(req.url);
+  const filename = searchParams.get('filename');
+  console.log(filename);
 
-  const {
+  // ⚠️ The below code is for App Router Route Handlers only
+  // const blob = await put(filename as any, {
+  //   access: 'public',
+  // });
+  if (!filename) {
+  return NextResponse.json({ error: 'No filename provided' }, { status: 400 });
+  }
+  const blob = await put(
+    filename,
+    req.body,
+    {
+      access: "public",
+    }
+  );  const {
     company_name,
 company_website,
 company_industry,
 company_description,
-company_logo,
 company_linkedin,
 job_title,
 job_type,
@@ -25,14 +42,16 @@ tags,
 remote,
 color,
   } = await req.json();
-  console.log(company_name,company_website,company_industry,company_description,company_logo,company_linkedin,job_title,job_type,job_location,job_salary,job_description,job_apply_link,company_email,tags,remote,color);
+
+ console.log(blob.url);
+  console.log(company_name,company_website,company_industry,company_description,company_linkedin,job_title,job_type,job_location,job_salary,job_description,job_apply_link,company_email,tags,remote,color);
   console.log(tags.map((tag: any) => tag.text));
   const job:JobPost = await db.jobPost.create({
     data: {
       company_name,
       company_website,
       company_description,
-      company_logo,
+      company_logo: blob.url,
       department: company_industry,
       linkedin_in:company_linkedin,
       title: job_title,
@@ -70,5 +89,7 @@ color,
   const checkoutSession: Stripe.Checkout.Session =
     await stripe.checkout.sessions.create(params);
   console.log(checkoutSession);
+
   return NextResponse.json({ id: checkoutSession.id});
+
 }

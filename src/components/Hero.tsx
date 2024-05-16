@@ -23,9 +23,12 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-type Props = {};
+type Props = {
+  title: string;
+  description: string;
+};
 
-export default function Hero({}: Props) {
+export default function Hero({title,description}: Props) {
   const [open, setOpen] = React.useState(false);
   const [search, setSearch] = React.useState("");
   const router = useRouter()
@@ -33,7 +36,9 @@ export default function Hero({}: Props) {
     const down = (e: KeyboardEvent) => {
       if (e.key === "Enter") {
         e.preventDefault()
-        router.push(`/search?page=1&query=${search}`)
+          e.preventDefault();
+          router.push(`/search/${search}`);
+     
       }
     }
  
@@ -47,10 +52,10 @@ export default function Hero({}: Props) {
           <div className='rounded-3xl bg-gradient-to-tr from-purple-700 via-purple-500 to-purple-300 p-8 lg:px-20 lg:py-32'>
             <div className='mx-auto max-w-xl text-center'>
               <span className='relative rounded-full bg-white/10 px-4 py-2 text-sm leading-6 text-white ring-1 ring-white/20'>
-                Find your next job
+                {title}
               </span>
               <h2 className='font-display mt-8 text-balance text-3xl font-light tracking-tight text-white lg:text-4xl'>
-                Job Board for Web Developers, UI/UX Designers, and Marketers
+                {description}
               </h2>
               <p className='mt-4 text-balance text-base text-slate-300'>
                 Jobs is a handpicked job platform showcasing premier
@@ -63,13 +68,13 @@ export default function Hero({}: Props) {
         <div className='mx-auto max-w-7xl px-8 lg:px-0'>
           <div className='mx-auto max-w-7xl py-6 md:px-32 lg:-mt-24'>
             <div className='mx-auto mt-4 rounded-2xl bg-white/20 p-4 shadow-2xl shadow-slate-500/40 backdrop-blur-xl lg:p-8'>
-              <div className='grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-4'>
+              <div className='grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-1'>
                 <div>
-                  <div className='relative flex items-center justify-start'>
+                  <div className='relative flex items-center justify-start w-'>
                     <input
                       className='block w-full rounded-lg border-0 border-slate-300 px-4 py-2.5 pl-4 pr-8 text-left leading-none text-slate-500 shadow shadow-slate-500/20 outline-none ring-1 ring-inset ring-slate-300 duration-200 focus:ring-2 focus:ring-purple-600 sm:text-sm sm:leading-6 lg:rounded-xl'
                       type='text'
-                      placeholder='Search'
+                      placeholder='Search...'
                       value={search}
                       onChange={(e) => setSearch(e.target.value)}
                     />
@@ -98,7 +103,7 @@ export default function Hero({}: Props) {
                     </svg>
                   </div>
                 </div>
-<Dropw />
+{/* <Dropw /> */}
                 {/* <div className='relative'>
                   <button
                     className='relative flex w-full items-center justify-between gap-2 rounded-lg border-0 border-slate-300 bg-white px-4 py-2.5 text-slate-500 shadow shadow-slate-500/20 outline-none ring-1 ring-inset ring-slate-300 duration-200 focus:ring-2 focus:ring-purple-600 sm:text-sm sm:leading-6 lg:rounded-xl'
@@ -220,8 +225,8 @@ export default function Hero({}: Props) {
                     </a>
                   </div>
                 </div> */}
-                <Dropw />
-                <Dropw />
+                {/* <Dropw />
+                <Dropw /> */}
               </div>
             </div>
           </div>

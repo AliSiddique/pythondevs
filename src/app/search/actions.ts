@@ -1,29 +1,30 @@
-"use server"
+'use server';
 
-import { db } from "../../../prisma/client"
+import { db } from "../../../prisma/client";
+
+
 
 export async function GetJobs({
   search,
   offset = 0,
   limit = 2,
 }: {
-  search?: string | undefined
-  offset?: number
-  limit?: number
+  search?: string | undefined;
+  offset?: number;
+  limit?: number;
 }) {
   const data = await db.jobPost.findMany({
     where: {
-       title: { contains: search ,mode:"insensitive" 
-      
-      } },
+      title: { contains: search, mode: 'insensitive' },
+    },
     skip: offset,
     take: limit,
-  })
+  });
 
   const totalCount = await db.jobPost.count({
-    where: { title: { contains: search,mode:"insensitive" } },
-  })
-  const totalPages = Math.ceil(totalCount / limit)
+    where: { title: { contains: search, mode: 'insensitive' } },
+  });
+  const totalPages = Math.ceil(totalCount / limit);
 
-  return { data, totalCount, totalPages }
+  return { data, totalCount, totalPages };
 }

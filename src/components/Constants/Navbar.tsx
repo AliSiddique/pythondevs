@@ -167,7 +167,7 @@ export default function Navbar() {
                 </div>
               </div>
             </div>
-            <div className='absolute right-0 flex h-10 w-10 cursor-pointer flex-col items-center justify-center rounded-full bg-white hover:bg-slate-100 lg:hidden lg:items-end'>
+            {/* <div className='absolute right-0 flex h-10 w-10 cursor-pointer flex-col items-center justify-center rounded-full bg-white hover:bg-slate-100 lg:hidden lg:items-end'>
               <svg
                 className='h-6 w-6 text-slate-700'
                 fill='none'
@@ -195,7 +195,7 @@ export default function Navbar() {
                   d='M6 18L18 6M6 6l12 12'
                 ></path>
               </svg>
-            </div>
+            </div> */}
           </div>
         </nav>
       </div>

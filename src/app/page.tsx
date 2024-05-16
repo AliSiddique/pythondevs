@@ -15,7 +15,11 @@ async function page({}: Props) {
   return (
     <div>
  
-<Hero />
+<Hero 
+title='Find your dream job'
+description='Search for your next job from our database of over 1000+ jobs'
+
+/>
     
       {/* <FeaturedJobs /> */}
       <LatestJobs />
