@@ -117,7 +117,9 @@ export default function LatestJobs({}: Props) {
   }, [inView])
 
   if (isLoading) return (
-   <JobLoading />
+   [0,1,2,3,4,5,6,7,8,9].map((_, i) => (
+    <JobLoading key={i} />
+  ))
   )
   if (isError) return <div>Error! {JSON.stringify(error)}</div>
   
@@ -178,7 +180,12 @@ export default function LatestJobs({}: Props) {
     
         </ul>
       </div>
-      {isFetchingNextPage ? <JobLoading/> : null}
+      {isFetchingNextPage && (
+  [0,1,2,3,4,5].map((_, i) => (
+    <JobLoading key={i} />
+  ))
+)}
+
 
       <span style={{ visibility: 'hidden' }} ref={ref}>
         intersection observer marker

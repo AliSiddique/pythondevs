@@ -53,7 +53,6 @@ export default function RootLayout({
         <Toaster position='top-right' />
           <Navbar  />
           {children}
-          <Footer />
         </QueryWrapper>
       </body>
     </html>

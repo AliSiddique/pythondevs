@@ -23,7 +23,6 @@ export async function GET(req: NextRequest, res: Response) {
                 featured: true,
             }
         })
-        console.log(posts)
         // if (posts.length === 0) {
         //   return NextResponse.json({ posts: [], nextId: 0 })
         // }

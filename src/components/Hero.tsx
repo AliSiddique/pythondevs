@@ -58,8 +58,8 @@ export default function Hero({title,description}: Props) {
                 {description}
               </h2>
               <p className='mt-4 text-balance text-base text-slate-300'>
-                Jobs is a handpicked job platform showcasing premier
-                opportunities for developers, designers, and marketers within
+                Pythondevs is a handpicked job platform showcasing premier
+                opportunities for python developers within
                 the tech industry.
               </p>
             </div>
