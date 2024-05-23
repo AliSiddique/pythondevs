@@ -115,7 +115,7 @@ export default function JobEntries({
 //         </div>
 //       </li>
 //     </div>
-<li>
+<div>
   <div className="group relative py-6 sm:rounded-2xl">
     <div
       className="absolute -inset-x-4 -inset-y-px bg-slate-50 opacity-0 group-hover:opacity-100 sm:-inset-x-6 rounded-2xl lg:-inset-x-8 duration-200"
@@ -147,15 +147,22 @@ export default function JobEntries({
         <div className="col-start-3 row-start-2 -ml-2.5 flex-auto sm:ml-0 sm:pl-6">
           <dt className="sr-only">Location</dt>
           <dd className="flex items-center text-xs leading-6 text-slate-500">
+            
+            {location}
+          </dd>
+          <div className="col-span-3 -ml-2.5 flex-none">
+          <dt className="sr-only">Salary</dt>
+          <dd className="flex items-center text-xs leading-6 text-slate-500">
             <svg
               viewBox="0 0 2 2"
               aria-hidden="true"
-              className="mr-2 h-0.5 w-0.5 flex-none fill-slate-400 sm:hidden"
+              className="mr-2 h-0.5 w-0.5 flex-none fill-slate-400"
             >
               <circle cx="1" cy="1" r="1"></circle>
             </svg>
-            {location}
+            {salary}
           </dd>
+        </div>
         </div>
         <div className="col-span-2 col-start-1 w-full flex-none">
           <dt className="sr-only">Title</dt>
@@ -169,28 +176,22 @@ export default function JobEntries({
           </dd>
         </div>
         <div className="col-start-1 mr-2.5 flex-none">
-          <dt className="sr-only">Type</dt>
+          <dt className="sr-only">Tech</dt>
           <dd className="text-xs leading-6 text-slate-500">
-            {type}
+            {tags?.slice(0, 3).map((tag) => (
+              <div key={tag} className="mr-2 ">
+              <Badge key={tag} className={`bg-[#4584b6] `}>
+                {tag}
+              </Badge>
+              </div>
+            ))}
           </dd>
         </div>
-        <div className="col-span-3 -ml-2.5 flex-none">
-          <dt className="sr-only">Salary</dt>
-          <dd className="flex items-center text-xs leading-6 text-slate-500">
-            <svg
-              viewBox="0 0 2 2"
-              aria-hidden="true"
-              className="mr-2 h-0.5 w-0.5 flex-none fill-slate-400"
-            >
-              <circle cx="1" cy="1" r="1"></circle>
-            </svg>
-            {salary}
-          </dd>
-        </div>
+
       </dl>
     </div>
   </div>
-</li>
+</div>
 
   );
 }

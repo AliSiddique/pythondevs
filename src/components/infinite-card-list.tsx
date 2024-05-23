@@ -51,7 +51,6 @@ export default function InfiniteCardList({ initialData, search, limit }: IProps)
     <>
    <div className='mx-auto max-w-6xl px-8 py-12 md:px-32'>
         {data.map((p) => (
-        //   <PokemonCard key={p.id} id={p.id} name={p.title} image={p.company_logo} />
           <JobEntries
             url={'/jobs/' + p.id}
             type={p.type}
@@ -62,7 +61,7 @@ export default function InfiniteCardList({ initialData, search, limit }: IProps)
             companyLogo={p.company_logo}
             color={p.color ?? 'bg-slate-500'}
             tags={p.tags ?? []}
-            apply_link={p.apply_link ?? 'https://hirewise.lexingtonthemes.com/'}
+            apply_link={p.apply_link ?? 'https:/pythondevs.io'}
             id={p.id as any}
             title={p.title}
             />
@@ -70,7 +69,6 @@ export default function InfiniteCardList({ initialData, search, limit }: IProps)
       </div>
       {!isDisable ? (
         <div ref={ref} className="mt-6 flex flex-col items-center justify-center">
-          {/* <Loader2 className="animate-spin" size={48} /> */}
           <JobLoading />
         </div>
       ) : (

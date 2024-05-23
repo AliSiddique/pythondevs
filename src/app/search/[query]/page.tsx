@@ -23,7 +23,6 @@ export default async function Page({
         title={`Search Jobs for ${decodeURIComponent(params?.query as string)}`}
         description={`Search for your next job for ${decodeURIComponent(params?.query as string)} from our database of over 1000+ jobs`}
       />
-      <div className='mb-3 flex items-center justify-between'></div>
       <Suspense key={search} fallback={<Skeleton />}>
         <InfiniteCardList
           search={search}

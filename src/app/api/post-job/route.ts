@@ -70,8 +70,8 @@ export async function POST(req: Request) {
       job_id: job.id,
     },
 
-    success_url: `http://localhost:3000/success`,
-    cancel_url: `http://localhost:3000/`,
+    success_url: `${process.env.NEXT_PUBLIC_URL}/success`,
+    cancel_url: `${process.env.NEXT_PUBLIC_URL}/post-job-featured`,
   };
 
   const checkoutSession: Stripe.Checkout.Session =

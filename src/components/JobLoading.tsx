@@ -51,7 +51,8 @@ export default function JobLoading({}: Props) {
               </div>
               <div className='col-start-1 mr-2.5 flex-none'>
                 <dt className='sr-only'>Type</dt>
-                <dd className='text-xs leading-6 text-slate-500'>                  <Skeleton className='w-full h-2' />
+                <dd className='text-xs leading-6 text-slate-500'>              
+                    <Skeleton className='w-full h-2' />
 </dd>
               </div>
               <div className='col-span-3 -ml-2.5 flex-none'>

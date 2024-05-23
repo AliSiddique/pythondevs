@@ -60,10 +60,18 @@ const formSchema = z.object({
 export default function PostJob() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
+    defaultValues: {
+      company_logo: "https://hirewise.lexingtonthemes.com/logos/github.svg",
+      jobTitle: 'Software Engineer',
+      company_name: 'SaasUnderOne',
+      jobSalary: '120,000',
+      jobLocation: 'San Francisco, CA',
+      jobType: 'Full-time',
+      
+    },
   });
-  // 2. Define a submit handler.
+
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
     const {
       company_name,
       company_website,
@@ -139,7 +147,7 @@ export default function PostJob() {
             <div className='mt-12 grid grid-cols-1 gap-4'>
               <JobEntries
                 company={form.watch('company_name')}
-                companyLogo={form.watch('company_logo') ?? '/logo.webp'}
+                companyLogo={form.watch('company_logo') ?? 'https://hirewise.lexingtonthemes.com/logos/github.svgp'}
                 position={form.watch('jobTitle')}
                 url={form.watch('company_website')}
                 type={form.watch('jobType')}
@@ -507,7 +515,7 @@ export default function PostJob() {
                                       setTags={(newTags) => {
                                         form.setValue(
                                           'tags',
-                                          newTags as [Tag, ...Tag[]]
+                                          newTags as Tag[]
                                         );
                                       }}
                                     />
@@ -615,7 +623,7 @@ export default function PostJob() {
                       <div className='col-span-full p-8'>
                         <Button
                           type='submit'
-                          className='z-50 inline-flex w-full items-center justify-center rounded-full  px-5 py-3 text-center text-sm text-white duration-200 hover:bg-purple-50 hover:text-purple-500 focus:outline-none focus:ring-0 focus:ring-purple-500 focus:ring-offset-2 md:focus:ring-2'
+                          className='z-50 inline-flex w-full items-center justify-center rounded-full  px-5 py-3 text-center text-sm text-white duration-200 hover:bg-purple-50 hover:text-purple-500 focus:outline-none focus:ring-0 focus:ring-purple-500 focus:ring-offset-2 bg-[#4584b6] md:focus:ring-2'
                         >
                           Submit
                         </Button>
